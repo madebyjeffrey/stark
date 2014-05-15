@@ -1,0 +1,23 @@
+{
+	"template_dir": "templates", 
+	"content_dir": "contents",
+	"output_dir": "output",
+
+	"server": { 
+		"port": 9009
+	},
+	"generator": {
+		"blank": true
+		},
+
+	"bundles": {
+		"/socr.css": [
+			"/css/socr.scss"			
+		]	
+	},
+	"plugins": {
+		"compilers": {
+			".css": "punch-sass-compiler"
+		}
+	}
+}

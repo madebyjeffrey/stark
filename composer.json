@@ -1,0 +1,17 @@
+{
+  "authors": [
+    {
+      "name": "Jeffrey Drake",
+      "email": "drakej@uwindsor.ca",
+      "homepage": "http://drakej.ca",
+      "role": "Developer"
+    }],
+  "name": "iaefai/stark",
+  "description": "A starkly simple content management system",
+  "type": "project",
+  "license": "proprietary",
+  "require": {
+    "fire015/flintstone": "1.4.0",
+    "phpconsole/phpconsole": "2.*"
+  }
+}
