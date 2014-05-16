@@ -1,12 +1,44 @@
 <?php
+  error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
+  ini_set('display_errors', 1);
+
   require_once("vendor/autoload.php");
 
+  use Monolog\Logger;
+  use Monolog\Handler\ChromePHPHandler;
+  use Monolog\Formatter\ChromePHPFormatter;
+
+  $logger = new Logger('debugger');
+  $formatter = new ChromePHPFormatter();
+  $handler = new ChromePHPHandler();
+  $handler->setFormatter($formatter);
+  $logger->pushHandler($handler);
+
+  $config = parse_ini_file("config.ini",true);
+
+  Stark\Config::update_request($config, $logger);
+
+  $klein = new \Klein\Klein();
+
+  $klein->respond("/admin", function($request, $response, $service) {
+    $admin = new Stark\Admin($request, $response, $service);
+    return $admin->process();
+  });
+
+  $klein->respond("GET", "/hello-world", function() {
+    return 'hello-world';
+  });
+
+  $klein->dispatch();
+
+  exit(0);
   // $connector = PhpConsole\Connector::getInstance();
   // $connector->setSourcesBasePath('/home/drakej/domains/334.drakej.myweb.cs.uwindsor.ca/public_html/stark');
   //
   // $handler = PhpConsole\Handler::getInstance();
   // $handler->start();
   // $handler->debug("calling debug", "me!");
+
 
   $MIMES = array();
   $MIMES['css'] = 'text/css';

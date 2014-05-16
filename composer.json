@@ -12,6 +12,11 @@
   "license": "proprietary",
   "require": {
     "fire015/flintstone": "1.4.0",
-    "phpconsole/phpconsole": "2.*"
+    "monolog/monolog": "1.9.*",
+    "klein/klein": "2.0.*"
+  },
+  "autoload": {
+    "psr-4": { "Stark\\": "Stark/" }
   }
+
 }
